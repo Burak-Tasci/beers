@@ -9,6 +9,7 @@ import com.tsci.beers.databinding.DialogLoadingBinding
  */
 class LoadingDialog: BaseDialogFragment<DialogLoadingBinding>(R.layout.dialog_loading) {
 
+    override fun isCancelable(): Boolean = false
 
     override fun setupUi() {
 

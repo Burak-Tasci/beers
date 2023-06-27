@@ -1,6 +1,8 @@
 package com.tsci.beers.core
 
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,6 +79,7 @@ abstract class BaseDialogFragment<T : ViewDataBinding>(private val layoutId: Int
             setCancelable(isCancelable)
             setCanceledOnTouchOutside(isCancelable)
             requestWindowFeature(Window.FEATURE_NO_TITLE)
+            window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
         return dialog
     }
