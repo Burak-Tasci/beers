@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/spacing_tiny"
+    android:background="@drawable/background_item_beer"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewBeerImage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/spacing_small"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewBeerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_smaller"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:textSize="@dimen/font_small"
+        app:fontFamily="sans-serif-condensed-medium"
+        app:layout_constraintTop_toBottomOf="@id/imageViewBeerImage"
+        tools:text="Punk IPA 2007 - 2010" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTagLine"
+        android:layout_width="match_parent"
+        android:ellipsize="marquee"
+        app:fontFamily="sans-serif-condensed-light"
+        android:singleLine="true"
+        android:layout_marginStart="@dimen/spacing_smaller"
+        android:textSize="@dimen/font_small"
+        tools:text="Post Modern Classic. Spiky. Tropical. Hoppy."
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/textViewBeerName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

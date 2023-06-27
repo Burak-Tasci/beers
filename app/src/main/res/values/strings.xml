@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="not_connected_try_again">Connection failed. Make sure that your Internet connection is online and working properly.</string>
+    <string name="general_error_message">An error occurred</string>
+</resources>
