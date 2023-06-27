@@ -37,15 +37,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         lifecycleScope.launch {
             viewModel.events.collect { event ->
                 when (event) {
-                    HomeViewModel.UiEvent.BEERS -> {
-                        viewModel.uiState.beers.onSuccess {
-                            beerListAdapter.submitList(it)
-                        }.onError {
-                            sharedViewModel.onError(it)
-                        }.onLoading {
-                            sharedViewModel.onLoading(it)
-                        }
-                    }
+                    is HomeViewModel.UiEvent.Beers -> beerListAdapter.submitList(event.beers)
+                    is HomeViewModel.UiEvent.Error -> sharedViewModel.onError(event.errorModel)
+                    is HomeViewModel.UiEvent.Loading -> sharedViewModel.onLoading(event.isLoading)
                 }
             }
         }
