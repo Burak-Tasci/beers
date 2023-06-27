@@ -9,7 +9,6 @@ import com.tsci.beers.R
 import com.tsci.beers.core.BaseFragment
 import com.tsci.beers.databinding.FragmentHomeBinding
 import com.tsci.beers.ui.adapter.BeerListAdapter
-import com.tsci.beers.util.LogHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,13 +38,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             viewModel.events.collect { event ->
                 when (event) {
                     HomeViewModel.UiEvent.BEERS -> {
-                        viewModel.uiState.beers.onError {
-                            sharedViewModel.onError(it)
-                        }.onSuccess {
+                        viewModel.uiState.beers.onSuccess {
                             beerListAdapter.submitList(it)
+                        }.onError {
+                            sharedViewModel.onError(it)
                         }.onLoading {
                             sharedViewModel.onLoading(it)
-                            LogHelper.debug("loading invoke $it")
                         }
                     }
                 }
