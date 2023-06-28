@@ -15,12 +15,12 @@ object LogHelper {
 
     fun warning(message: String, tag: String = TAG) = Log.w(tag, message)
 
-    fun logOnException(tag: String = TAG, exception: Exception) {
-        val stackTrace = exception.stackTrace
+    fun logThrowable(throwable: Throwable, tag: String = TAG) {
+        val stackTrace = throwable.stackTrace
         warning(stackTrace.toString())
     }
 
-    fun Exception.log(){
+    fun Throwable.log() {
         warning(stackTrace.toString())
     }
 

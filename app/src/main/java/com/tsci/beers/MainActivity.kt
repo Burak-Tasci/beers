@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.tsci.beers.core.BaseActivity
 import com.tsci.beers.databinding.ActivityMainBinding
 import com.tsci.beers.ext.findNavController
+import com.tsci.beers.ext.safeNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -47,7 +48,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
                     when{
                         isLoading && !isCurrentDestinationLoadingDialog ->
-                            navController.navigate(R.id.loadingDialog)
+                            navController.safeNavigation(R.id.loadingDialog)
                         !isLoading && isCurrentDestinationLoadingDialog ->
                             navController.navigateUp()
                     }
