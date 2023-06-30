@@ -57,6 +57,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(R.layout.fragment_det
         detailModel.apply {
             setToolbarSubtitle(name)
             binding.imageViewBeerImage.setUrl(imageUrl)
+            binding.textViewYeast.text = yeast
+            binding.textViewFirstBrew.text = getString(R.string.detail_first_brew_at, date)
             setupBeerOtherInformationsAdapter(
                 description,
                 brewerTips,
