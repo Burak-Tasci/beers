@@ -32,7 +32,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun observeStates() {
 
-        lifecycleScope.launch {
+        lifecycleScope.run {
             launch {
                 viewModel.errorModel.collect { errorModel ->
                     val message: String =

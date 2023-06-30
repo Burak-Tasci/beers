@@ -9,4 +9,6 @@ import com.tsci.beers.data.model.BeerResponse
 interface IBeerRepository {
 
     suspend fun getAllBeers(): Resource<List<BeerResponse>>
+
+    suspend fun getBeerDetail(id: Int): Resource<BeerResponse>
 }

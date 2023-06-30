@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_margin="@dimen/spacing_tiny"
     android:background="@drawable/background_item_beer"
+    android:id="@+id/constraintLayoutContainer"
     android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.AppCompatImageView

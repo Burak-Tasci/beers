@@ -1,7 +1,6 @@
 package com.tsci.beers.data
 
 import android.content.Context
-import android.util.Log
 import androidx.annotation.StringRes
 import com.tsci.beers.R
 import com.tsci.beers.util.LogHelper
@@ -27,13 +26,13 @@ class NetworkManager constructor(
             try {
                 val response = request(this@NetworkManager)
                 if (response == null) {
-                    LogHelper.debug("Response is null")
+                    LogHelper.debug("Response is null", TAG)
                     result.complete(Resource.Error(stringResource(R.string.general_error_message)))
                 } else {
                     result.complete(Resource.Success(response))
                 }
             } catch (ioException: IOException) {
-                Log.d(TAG, "Network Connection Failed.")
+                LogHelper.debug("Network Connection Failed.", TAG)
                 result.complete(
                     Resource.Error(
                         ServerErrorModel(message = stringResource(R.string.not_connected_try_again))

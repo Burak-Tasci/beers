@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".features.beer_other_informations.BeerOtherInformationsFragment">
+
+        <TextView
+            android:id="@+id/textViewContent"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:layout_marginTop="@dimen/spacing_smaller"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_blank_fragment" />
+
+    </ScrollView>
+</layout>

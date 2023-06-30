@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".features.detail.DetailFragment">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewYeast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:paddingVertical="@dimen/spacing_smallest"
+                android:textColor="@color/oxford_blue"
+                app:fontFamily="sans-serif-condensed-light"
+                app:layout_constraintEnd_toStartOf="@id/textViewFirstBrew"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Wyeast 1056 - American Ale™" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewFirstBrew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_normal"
+                android:textColor="@color/oxford_blue"
+                app:fontFamily="sans-serif-condensed-medium"
+                app:layout_constraintBottom_toBottomOf="@id/textViewYeast"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewYeast"
+                app:layout_constraintTop_toTopOf="@id/textViewYeast"
+                tools:text="04/2007" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewBeerImage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintDimensionRatio="2:1"
+                app:layout_constraintTop_toBottomOf="@id/textViewYeast"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutOtherInformations"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/imageViewBeerImage">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerOtherInformations"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tabLayoutOtherInformations"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

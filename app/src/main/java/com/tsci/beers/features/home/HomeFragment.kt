@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.tsci.beers.MainViewModel
 import com.tsci.beers.R
 import com.tsci.beers.core.BaseFragment
 import com.tsci.beers.databinding.FragmentHomeBinding
+import com.tsci.beers.ext.safeNavigation
 import com.tsci.beers.ui.adapter.BeerListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -22,9 +24,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     private val sharedViewModel by activityViewModels<MainViewModel>()
 
-    private var beerListAdapter = BeerListAdapter()
+    private var beerListAdapter = BeerListAdapter(::onItemClick)
 
     override fun setupUi() {
+        setToolbarTitle(R.string.app_name)
+        setToolbarSubtitle(R.string.home_title)
         initAdapter()
         observeEvents()
     }
@@ -43,7 +47,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         }
+    }
 
+    private fun onItemClick(id: Int){
+        val action = HomeFragmentDirections.toDetailFragment(id)
+        findNavController().safeNavigation(action)
     }
 
 }

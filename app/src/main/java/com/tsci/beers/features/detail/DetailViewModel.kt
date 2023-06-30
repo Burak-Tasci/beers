@@ -1,19 +1,20 @@
-package com.tsci.beers.features.home
+package com.tsci.beers.features.detail
 
 import androidx.lifecycle.viewModelScope
 import com.tsci.beers.core.BaseViewModel
 import com.tsci.beers.data.ServerErrorModel
-import com.tsci.beers.domain.use_case.GetAllBeersUseCase
-import com.tsci.beers.ui.model.BeerItemUiModel
+import com.tsci.beers.domain.use_case.GetBeerDetailUseCase
+import com.tsci.beers.ui.model.BeerDetailUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val getAllBeersUseCase: GetAllBeersUseCase
+class DetailViewModel @Inject constructor(
+    private val getBeerDetailUseCase: GetBeerDetailUseCase
 ) : BaseViewModel() {
 
     private var _uiState = UiState()
@@ -23,16 +24,13 @@ class HomeViewModel @Inject constructor(
     private val _events = MutableSharedFlow<UiEvent>()
     val events = _events.asSharedFlow()
 
-    init {
-        getBeers()
-    }
 
-    private fun getBeers() {
+    fun getBeerDetail(beerId: Int) {
         viewModelScope.launch {
-            getAllBeersUseCase.execute().collect { result ->
-                result.onSuccess { beers ->
-                    _uiState = _uiState.copy(beers = beers)
-                    _events.emit(UiEvent.Beers(beers))
+            getBeerDetailUseCase.execute(beerId).collect { result ->
+                result.onSuccess { detailModel ->
+                    _uiState = _uiState.copy(detailModel = detailModel)
+                    _events.emit(UiEvent.DetailModel(detailModel))
                 }.onError {
                     _events.emit(UiEvent.Error(it))
                 }.onLoading {
@@ -42,14 +40,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
     data class UiState(
-        val beers: List<BeerItemUiModel> = emptyList()
+        val detailModel: BeerDetailUiModel? = null
     )
 
-    sealed class UiEvent() {
+    sealed class UiEvent {
         data class Error(val errorModel: ServerErrorModel) : UiEvent()
         data class Loading(val isLoading: Boolean) : UiEvent()
-        data class Beers(val beers: List<BeerItemUiModel>) : UiEvent()
+        data class DetailModel(val detailModel: BeerDetailUiModel) : UiEvent()
     }
+
 }

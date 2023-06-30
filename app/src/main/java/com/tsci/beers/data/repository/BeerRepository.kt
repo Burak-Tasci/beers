@@ -19,6 +19,12 @@ class BeerRepository(
             beerApi.getAllBeers()
         }
     }
+
+    override suspend fun getBeerDetail(id: Int): Resource<BeerResponse> {
+        return networkManager.apiCall {
+            beerApi.getBeerDetail(id).first()
+        }
+    }
 }
 
 

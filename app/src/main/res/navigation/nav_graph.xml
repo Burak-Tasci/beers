@@ -5,15 +5,32 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.tsci.beers.features.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
     <dialog
         android:id="@+id/loadingDialog"
         android:name="com.tsci.beers.ui.dialog.LoadingDialog"
         android:label="LoadingDialog"
         tools:layout="@layout/dialog_loading" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tsci.beers.features.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/toDetailFragment"
+            app:destination="@id/detailFragment">
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.tsci.beers.features.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

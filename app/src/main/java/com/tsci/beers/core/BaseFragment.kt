@@ -23,6 +23,8 @@ abstract class BaseFragment<VB>(@LayoutRes private val contentLayoutId: Int) :
 
     private lateinit var baseBinding: FragmentBaseBinding
 
+    protected open var toolbarDisabled: Boolean = false
+
     // The local _binding parameter which is only available
     // within after onCreateView and before onDestroyView.
     private var _binding: VB? = null
@@ -44,9 +46,11 @@ abstract class BaseFragment<VB>(@LayoutRes private val contentLayoutId: Int) :
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        _binding = bindingInflater.invoke(layoutInflater)
+        if (toolbarDisabled)
+            return binding.root
         baseBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_base, container, false)
-        _binding = bindingInflater.invoke(layoutInflater)
         setupBinding()
         baseBinding.containerFrameLayout.setOnClickListener { }
         return baseBinding.root
@@ -84,6 +88,10 @@ abstract class BaseFragment<VB>(@LayoutRes private val contentLayoutId: Int) :
 
     fun setToolbarSubtitle(subtitle: String) {
         baseBinding.includeToolbar.toolbar.subtitle = subtitle
+        baseBinding.includeToolbar.logoImageView.visibility = View.GONE
+    }
+    fun setToolbarSubtitle(@StringRes subTitleResId: Int) {
+        baseBinding.includeToolbar.toolbar.subtitle = getString(subTitleResId)
         baseBinding.includeToolbar.logoImageView.visibility = View.GONE
     }
 
