@@ -12,12 +12,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class BeerOtherInformationsFragment :
     BaseFragment<FragmentBeerOtherInformationsBinding>(R.layout.fragment_beer_other_informations) {
 
-    override var toolbarDisabled: Boolean = true
 
     override val bindingInflater: (LayoutInflater) -> FragmentBeerOtherInformationsBinding
         get() = FragmentBeerOtherInformationsBinding::inflate
 
     override fun setupUi() {
+        hideToolbar()
         initArguments()
     }
 

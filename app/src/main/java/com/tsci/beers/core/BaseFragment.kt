@@ -23,8 +23,6 @@ abstract class BaseFragment<VB>(@LayoutRes private val contentLayoutId: Int) :
 
     private lateinit var baseBinding: FragmentBaseBinding
 
-    protected open var toolbarDisabled: Boolean = false
-
     // The local _binding parameter which is only available
     // within after onCreateView and before onDestroyView.
     private var _binding: VB? = null
@@ -47,8 +45,6 @@ abstract class BaseFragment<VB>(@LayoutRes private val contentLayoutId: Int) :
         savedInstanceState: Bundle?
     ): View {
         _binding = bindingInflater.invoke(layoutInflater)
-        if (toolbarDisabled)
-            return binding.root
         baseBinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.fragment_base, container, false)
         setupBinding()
