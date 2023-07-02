@@ -2,6 +2,7 @@ package com.tsci.beers
 
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.google.android.material.snackbar.Snackbar
@@ -30,6 +31,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         observeStates()
     }
 
+    override fun preOnCreate() {
+        installSplashScreen().setKeepOnScreenCondition{
+            viewModel.isSplashScreenVisible.value
+        }
+    }
     private fun observeStates() {
 
         lifecycleScope.run {
@@ -54,8 +60,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                     }
                 }
             }
-
-
         }
     }
 }

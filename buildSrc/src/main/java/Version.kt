@@ -8,6 +8,7 @@ object Version {
         const val core = "1.8.0"
         const val textExtJUnit = "1.1.5"
         const val textEspressoCore = "3.5.1"
+        const val splashScreen = "1.0.0"
     }
 
     object Dagger {

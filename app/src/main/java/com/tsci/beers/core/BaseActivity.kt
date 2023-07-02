@@ -34,7 +34,6 @@ abstract class BaseActivity<VB: ViewBinding> : AppCompatActivity() {
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         preOnCreate()
-
         super.onCreate(savedInstanceState)
         _binding = bindingInflater.invoke(layoutInflater)
         setContentView(binding.root)

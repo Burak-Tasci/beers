@@ -1,10 +1,14 @@
 package com.tsci.beers
 
+import androidx.lifecycle.viewModelScope
 import com.tsci.beers.core.BaseViewModel
 import com.tsci.beers.data.ServerErrorModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -19,6 +23,13 @@ class MainViewModel @Inject constructor(): BaseViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading
 
+    private val _isSplashScreenVisible =  MutableStateFlow(true)
+    val isSplashScreenVisible = _isSplashScreenVisible.asStateFlow()
+
+    init {
+        splashScreenWork()
+    }
+
     fun onError(errorModel: ServerErrorModel) {
         _errorModel.update {
             errorModel
@@ -27,5 +38,12 @@ class MainViewModel @Inject constructor(): BaseViewModel() {
 
     fun onLoading(isLoading: Boolean) {
         _isLoading.update { isLoading }
+    }
+
+    private fun splashScreenWork(){
+        viewModelScope.launch {
+            delay(4000L)
+            _isSplashScreenVisible.value = false
+        }
     }
 }

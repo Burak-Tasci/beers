@@ -7,6 +7,7 @@ class Dependencies {
         const val appCompat = "androidx.appcompat:appcompat:${Version.AndroidX.appCompat}"
         const val testExtJUnit = "androidx.test.ext:junit:${Version.AndroidX.textExtJUnit}"
         const val testEspressoCore = "androidx.test.espresso:espresso-core:${Version.AndroidX.textEspressoCore}"
+        const val splashScreen = "androidx.core:core-splashscreen:${Version.AndroidX.splashScreen}"
     }
 
     object JUnit{

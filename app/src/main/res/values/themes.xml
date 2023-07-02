@@ -1,14 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Beers" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
 
         <!-- turns off dimming behing the window -->
         <item name="android:backgroundDimEnabled">false</item>
 
     </style>
+    <!-- Base splash screen theme. -->
+    <style name="Base.Theme.Beers.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white_smoke</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_beer_bottle</item>
+        <item name="postSplashScreenTheme">@style/Theme.Beers</item>
 
-    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+    </style>
+
+    <style name="Theme.Beers" parent="Base.Theme.Beers" />
+    <style name="Theme.Beers.SplashScreen" parent="Base.Theme.Beers.SplashScreen"/>
 </resources>
