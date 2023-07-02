@@ -16,12 +16,11 @@ object LogHelper {
     fun warning(message: String, tag: String = TAG) = Log.w(tag, message)
 
     fun logThrowable(throwable: Throwable, tag: String = TAG) {
-        val stackTrace = throwable.stackTrace
-        warning(stackTrace.toString())
+        throwable.log(tag)
     }
 
-    fun Throwable.log() {
-        warning(stackTrace.toString())
+    fun Throwable.log(tag: String = TAG) {
+        warning(stackTrace.toString(), tag)
     }
 
     private const val TAG: String = "LogHelper"
