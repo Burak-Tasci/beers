@@ -2,8 +2,9 @@ package com.tsci.beers.domain.use_case
 
 import com.tsci.beers.core.NoParamBaseUseCase
 import com.tsci.beers.data.Resource
+import com.tsci.beers.data.model.BeerResponse
 import com.tsci.beers.data.repository.BeerRepository
-import com.tsci.beers.domain.Mappers.beerResponseModelToBeerItemUiModel
+import com.tsci.beers.domain.IMapper
 import com.tsci.beers.ui.model.BeerItemUiModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -28,6 +29,21 @@ class GetAllBeersUseCase(
             emit(Resource.Error(it))
         }.finally {
             emit(Resource.Loading(false))
+        }
+    }
+
+    private companion object{
+
+        const val UNKNOWN_VALUE = "Unknown Value"
+        const val UNKNOWN_ID = 0
+
+        val beerResponseModelToBeerItemUiModel = object : IMapper<BeerResponse, BeerItemUiModel> {
+            override fun map(input: BeerResponse): BeerItemUiModel = BeerItemUiModel(
+                id = input.id ?: UNKNOWN_ID,
+                name = input.name ?: UNKNOWN_VALUE,
+                imageUrl = input.imageUrl ?: UNKNOWN_VALUE,
+                tagLine = input.tagline ?: UNKNOWN_VALUE
+            )
         }
     }
 }
