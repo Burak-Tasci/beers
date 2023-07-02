@@ -1,6 +1,8 @@
 package com.tsci.beers.di
 
 import com.tsci.beers.data.repository.BeerRepository
+import com.tsci.beers.domain.mapper.BeerResponseToBeerDetailUiModelMapper
+import com.tsci.beers.domain.mapper.BeerResponseToBeerItemUiModelMapper
 import com.tsci.beers.domain.use_case.GetAllBeersUseCase
 import com.tsci.beers.domain.use_case.GetBeerDetailUseCase
 import dagger.Module
@@ -19,12 +21,14 @@ class UseCaseModule {
 
     @ViewModelScoped
     @Provides
-    fun providesGetAllBeersUseCase(beerRepository: BeerRepository) = GetAllBeersUseCase(
-        beerRepository
+    fun providesGetAllBeersUseCase(beerRepository: BeerRepository, mapper: BeerResponseToBeerItemUiModelMapper) = GetAllBeersUseCase(
+        beerRepository,
+        mapper
     )
     @ViewModelScoped
     @Provides
-    fun providesGetBeerDetailUseCase(beerRepository: BeerRepository) = GetBeerDetailUseCase(
-        beerRepository
+    fun providesGetBeerDetailUseCase(beerRepository: BeerRepository, mapper: BeerResponseToBeerDetailUiModelMapper) = GetBeerDetailUseCase(
+        beerRepository,
+        mapper
     )
 }

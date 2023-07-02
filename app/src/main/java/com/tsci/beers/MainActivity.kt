@@ -36,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             viewModel.isSplashScreenVisible.value
         }
     }
+
     private fun observeStates() {
 
         lifecycleScope.run {
